@@ -17,6 +17,8 @@ import time
 import tensorflow as tf
 from glob import glob
 from urllib.request import urlretrieve
+
+from PIL import Image
 from tqdm import tqdm
 
 
