@@ -178,6 +178,9 @@ def run():
         # Save inference data using helper.save_inference_samples
         helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
 
+        # Save graph
+        tf.train.write_graph(sess.graph_def, '.', 'graph_semantic_segmentation.pb', as_text=False)
+
         # OPTIONAL: Apply the trained model to a video
 
 
