@@ -69,17 +69,16 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
 
     layer7= tf.layers.conv2d_transpose(layer7_1x1, num_classes, 4, 2, padding='same',
                                         kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    output = tf.add(layer7, layer7_1x1)
+    output = tf.add(layer7, layer4_1x1)
 
     layer4 = tf.layers.conv2d_transpose(output, num_classes, 4, 2, padding='same',
                                         kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    output = tf.add(layer4, layer4_1x1)
+    output = tf.add(layer4, layer3_1x1)
 
     layer3 = tf.layers.conv2d_transpose(output, num_classes, 16, 8, padding='same',
                                         kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
-    output = tf.add(layer3, layer3_1x1)
 
-    return output
+    return layer3
 
 
 tests.test_layers(layers)
